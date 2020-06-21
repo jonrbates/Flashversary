@@ -1,13 +1,18 @@
-A web app that simulates flashcards.
-It adaptively learns and draws the most challenging cards
-using reinforcement learning.
+A web app that simulates flashcards. It adaptively learns and draws the most challenging cards using reinforcement learning.  Currently, it's set up to demo arithmetic, but can be easily modified for any subject.
 
-Demo: www.flashversary.com
+**Demo: www.flashversary.com**
 
-Dev locally
+Note: To see Q-value updates, click the *Toggle Table* button in the demo.
+
+### Run instructions
+
+*Run locally*
+```
 flask run
+```
 
-Test locally
+*Test locally*
+```
 docker build -t flashversary .
 docker run -i -a stdout -a stderr \
      -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
@@ -15,22 +20,25 @@ docker run -i -a stdout -a stderr \
      -p 8080:5000 \
      --cpus="1" -m 1g \
      flashversary:latest
+```
 
-Deploy to elastic beanstalk after committing branch
-[first time] eb init -p docker flashversary
-[first time] eb create flashversary-dev -s
+*Deploy*\
+First, commit the branch.
+
+For a first deployment, run these first
+```
+eb init -p docker flashversary
+eb create flashversary-dev -s
+```
+Then
+```
 eb deploy
+```
 
+### Credits
 
-Branches
-master - arithmetic.  t2.micro is sufficient
+Source for static theme and fonts:
+https://github.com/aws-samples/eb-py-flask-signup
 
-
-Appendix.
-See notes/notes.txt for thorough analyses and workflow comments.
-
-
-Credits.
-
-https://github.com/aws-samples/eb-py-flask-signup/tree/docker
-Used this for theme and help with css, js, bootstrap
+Source for gif: 
+https://giphy.com/gifs/monty-cool-cat-happiness-jbKf1K7MhK5DErbeXY

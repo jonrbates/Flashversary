@@ -1,3 +1,10 @@
+/*
+This .css file is modified from
+static/bootstrap/css/jumbotron-narrow.css
+in the repository
+aws-samples/eb-py-flask-signup
+*/
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
@@ -16,6 +23,7 @@ body {
 .header {
   border-bottom: 1px solid #e5e5e5;
 }
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;

@@ -6,14 +6,14 @@ A web app that simulates flashcards. It adaptively learns and draws the most cha
 
 Note: To see Q-value updates, click the *Toggle Table* button in the demo.
 
-### Run instructions
+#### Run instructions
 
-*Run locally*
+*Run locally (no Docker)*
 ```
 flask run
 ```
 
-*Test locally*
+*Run locally (with Docker)*
 ```
 docker build -t flashversary .
 docker run -i -a stdout -a stderr \
@@ -37,7 +37,7 @@ Then
 eb deploy
 ```
 
-### Credits
+#### Credits
 
 Source for static theme and fonts:
 https://github.com/aws-samples/eb-py-flask-signup

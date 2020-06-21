@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container" style="margin-bottom: 7em; margin-top: 3em">
+  <div class="row">
+    <!-- Show flashcard with answer options. -->
+    <div class="col-sm-7">
+      <blockquote>{{card.prompt}}</blockquote>
+      <form action="{{ url_for('index') }}" method='POST'>
+        {{ flashcard_form.hidden_tag() }}
+        {{ flashcard_form.r1(class_="btn btn-info") }}
+        {{ flashcard_form.r2(class_="btn btn-info") }}
+      </form>
+    </div>
+    <div class="col-sm-5">
+      {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+      {% for category, message in messages %}
+        {% if message == 0 %}
+        <div class="alert alert-warning text-center vanish" style="width: 20%;">
+        <span class="glyphicon glyphicon-thumbs-down icon-large"></span>
+        </div>
+        {% elif message % 10 == 0 %}
+        <div class="text-center">
+        <p> Take a break! </p>
+        <p><img src = "static/giphy-cat.gif" alt = "A cat with sunglasses."></p>
+        <p style="font-size:3px">
+        source: https://giphy.com/gifs/monty-cool-cat-happiness-jbKf1K7MhK5DErbeXY
+        </p>
+        </div>
+        {% elif message > 5 %}
+        <div class="alert alert-danger text-center vanish" style="width: 20%;">
+        <span class="glyphicon glyphicon-fire icon-large"> On fire! </span>
+        </div>
+        {% else %}
+        <div class="alert alert-success text-center vanish" style="width: 20%;">
+        <span class="glyphicon glyphicon-thumbs-up icon-large"></span>
+        </div>
+        {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+</div>
+
+
+<!-- Optionally show statistics in a table. -->
+<div>
+
+{% if session['showTable'] %}
+<table class="table .table-condensed visible">
+  {% else %}
+  <table class="table .table-condensed invisible">
+    {% endif %}
+    <thead>
+      <tr>
+        <th>Prompt</th>
+        <th>Successes</th>
+        <th>Attempts</th>
+        <th>Qval</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in head_cards %}
+        {% if c.id==card.id %}
+          <tr class="active">
+        {% else %}
+          <tr>
+        {% endif %}
+          <td>{{c.prompt}}</td>
+          <td>{{c.successes}}</td>
+          <td>{{c.attempts}}</td>
+          <td>{{c.qval}}</td>
+          <td>{{c.timestamp}}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

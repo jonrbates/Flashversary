@@ -1,0 +1,23 @@
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+.ebignore
+
+# cached
+**/__pycache__
+
+# virtualenv
+.venv
+
+# database migrations
+migrations
+
+# session
+flask_session
+
+# text generator data
+app/text_generators/data
+
+# notes
+notes
